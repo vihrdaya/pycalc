@@ -15,19 +15,23 @@ class MyWidget(QtWidgets.QWidget):
         super().__init__()
 
         self.hello = ["Hello"]
-
-        self.pad_button = PadButton("1")
+        self.num_1 = "1"
+        self.pad_button_1 = PadButton(f"{self.num_1}")
         self.text = QtWidgets.QLabel("This is a Label", alignment=QtCore.Qt.AlignCenter)
 
         self.layout = QtWidgets.QVBoxLayout(self)
         self.layout.addWidget(self.text)
-        self.layout.addWidget(self.pad_button.button)
+        self.addButton(self.pad_button_1)
+        # self.layout.addWidget(self.pad_button_1.button)
 
-        self.pad_button.button.clicked.connect(self.magic)
+    @QtCore.Slot()
+    def addButton(self, pad_button):
+        self.layout.addWidget(pad_button.button)
+        pad_button.button.clicked.connect(self.magic)
 
     @QtCore.Slot()
     def magic(self):
-        self.text.setText(random.choice(self.hello))
+        self.text.setText(random.choice(self.num_1))
 
 
 if __name__ == "__main__":
