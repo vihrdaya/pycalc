@@ -42,7 +42,9 @@ class MyWidget(QtWidgets.QWidget):
         self.text.setText(f'{"".join(self.operate)}')
 
         if value == '=':
-            self.text.setText(f'{self.math_do(self.operate)}')
+
+            self.operate = [str(self.math_do(self.operate))]
+            self.text.setText(f'{"".join(self.operate)}')
         
         if value == 'CE':
             self.operate = []
@@ -58,7 +60,6 @@ class MyWidget(QtWidgets.QWidget):
         operands.remove('+')
         operands.remove('=')
         operands = [int(i) for i in operands]
-        print(operands)
         return sum(operands)
 
 
