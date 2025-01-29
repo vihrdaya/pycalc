@@ -55,6 +55,28 @@ class MyWidget(QtWidgets.QWidget):
             if i == '+':
                 ans = self.additionAction(operands)
                 return ans
+    
+    def open_close_recursion(self, inside_nums: dict) -> None:
+        open_close_counter = 0
+        position_log = 0
+        for i in inside_nums:
+            if i == '(':
+                open_close_counter += 1
+                position_log 
+
+    def parenthesis_pairer(self, operands: list) -> None:
+        operation_pairs = {
+            'pairs': [],
+            'level': 0,
+        }
+        open_close_counter = 0
+        position_log = 0
+        
+        
+
+
+    def num_parser(self, operands:list) -> None:
+        
 
     def additionAction(self, operands: list) -> float:
         operands.remove('+')
