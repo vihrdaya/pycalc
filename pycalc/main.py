@@ -71,12 +71,13 @@ class MyWidget(QtWidgets.QWidget):
         }
         open_close_counter = 0
         position_log = 0
+        print(operands)
         
-        
-
-
     def num_parser(self, operands:list) -> None:
-        
+        self.parenthesis_pairer(operands)
+
+
+    
 
     def additionAction(self, operands: list) -> float:
         operands.remove('+')
