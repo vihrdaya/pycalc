@@ -16,7 +16,7 @@ class MyWidget(QtWidgets.QWidget):
         self.operate = []
         # self.num_1 = "1"
         # self.pad_button_1 = PadButton(f"{self.num_1}")
-        self.text = QtWidgets.QLabel(f'{" ".join(self.operate)}', alignment=QtCore.Qt.AlignCenter)
+        self.text = QtWidgets.QLabel(f'{"".join(self.operate)}', alignment=QtCore.Qt.AlignCenter)
 
         self.layout = QtWidgets.QVBoxLayout(self)
         self.layout.addWidget(self.text)
@@ -38,23 +38,28 @@ class MyWidget(QtWidgets.QWidget):
 
     @QtCore.Slot()
     def magic(self, value):
-        self.operate.append(value)
-        self.text.setText(f'{"".join(self.operate)}')
-
         if value == '=':
+            print(self.operate)
 
             self.operate = [str(self.math_do(self.operate))]
             self.text.setText(f'{"".join(self.operate)}')
-        
+            value = None
         if value == 'CE':
             self.operate = []
             self.text.setText(f'{"".join(self.operate)}')
+        else:
+            print(self.operate)
+            self.operate.append(value)
+            self.text.setText(f'{"".join(self.operate)}')
+            print(self.operate)
     
     def math_do(self, operands: list) -> float:
-        for i in operands:
-            if i == '+':
-                ans = self.additionAction(operands)
-                return ans
+        # for i in operands:
+        #     if i == '+':
+        #         ans = self.additionAction(operands)
+        #         return ans
+        stringified_operands = "".join(operands)
+        return eval(stringified_operands)
     
     def open_close_recursion(self, inside_nums: dict) -> None:
         open_close_counter = 0
